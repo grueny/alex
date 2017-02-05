@@ -69,16 +69,13 @@ import com.amazon.speech.speechlet.SpeechletResponse;
  * Alexa: "Jeff has zero points and Bob has three"
  */
 @Service
-public class ScoreKeeperSpeechlet implements Speechlet {
-    private static final Logger log = LoggerFactory.getLogger(ScoreKeeperSpeechlet.class);
+public class AnnaSpeechlet implements Speechlet {
+    private static final Logger log = LoggerFactory.getLogger(AnnaSpeechlet.class);
 
 //    private AmazonDynamoDBClient amazonDynamoDBClient;
 
     @Autowired
-    private ScoreKeeperManager scoreKeeperManager;
-
-    @Autowired
-    private SkillContext skillContext;
+    private AnnaManager scoreKeeperManager;
 
     @Override
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
@@ -88,7 +85,7 @@ public class ScoreKeeperSpeechlet implements Speechlet {
 
         // if user said a one shot command that triggered an intent event,
         // it will start a new session, and then we should avoid speaking too many words.
-        skillContext.setNeedsMoreHelp(false);
+        //skillContext.setNeedsMoreHelp(false);
     }
 
     @Override
@@ -97,7 +94,7 @@ public class ScoreKeeperSpeechlet implements Speechlet {
         log.info("onLaunch requestId={}, sessionId={}", request.getRequestId(),
                 session.getSessionId());
 
-        skillContext.setNeedsMoreHelp(true);
+       // skillContext.setNeedsMoreHelp(true);
         return scoreKeeperManager.getLaunchResponse(request, session);
     }
 
@@ -108,7 +105,7 @@ public class ScoreKeeperSpeechlet implements Speechlet {
                 session.getSessionId());
         
         Intent intent = request.getIntent();
-        if ("NewGameIntent".equals(intent.getName())) {
+        if ("SchlechteNachtIntent".equals(intent.getName())) {
             return scoreKeeperManager.getNewGameIntentResponse(session, skillContext);
 
         } else if ("AddPlayerIntent".equals(intent.getName())) {
