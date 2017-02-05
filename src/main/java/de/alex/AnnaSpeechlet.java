@@ -106,28 +106,29 @@ public class AnnaSpeechlet implements Speechlet {
         
         Intent intent = request.getIntent();
         if ("SchlechteNachtIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getNewGameIntentResponse(session, skillContext);
+            return scoreKeeperManager.getSchlechteNachtIntentResponse(session);
 
-        } else if ("AddPlayerIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getAddPlayerIntentResponse(intent, session, skillContext);
+        } 
+        else if ("GuteNachtIntent".equals(intent.getName())) {
+            return scoreKeeperManager.getGuteNachtIntentResponse( session);
 
-        } else if ("AddScoreIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getAddScoreIntentResponse(intent, session, skillContext);
+        // } else if ("AddScoreIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getAddScoreIntentResponse(intent, session, skillContext);
 
-        } else if ("TellScoresIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getTellScoresIntentResponse(intent, session);
+        // } else if ("TellScoresIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getTellScoresIntentResponse(intent, session);
 
-        } else if ("ResetPlayersIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getResetPlayersIntentResponse(intent, session);
+        // } else if ("ResetPlayersIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getResetPlayersIntentResponse(intent, session);
 
-        } else if ("AMAZON.HelpIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getHelpIntentResponse(intent, session, skillContext);
+        // } else if ("AMAZON.HelpIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getHelpIntentResponse(intent, session, skillContext);
 
-        } else if ("AMAZON.CancelIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
+        // } else if ("AMAZON.CancelIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
 
-        } else if ("AMAZON.StopIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
+        // } else if ("AMAZON.StopIntent".equals(intent.getName())) {
+        //     return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
 
         } else {
             throw new IllegalArgumentException("Unrecognized intent: " + intent.getName());

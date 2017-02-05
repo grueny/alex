@@ -85,11 +85,19 @@ public class AnnaManager {
      *            {@link SkillContext} for this request
      * @return response for the new game intent.
      */
-    public SpeechletResponse getSchlechteNachtIntentResponse(Session session, SkillContext skillContext) {
-        ScoreKeeperGame game = scoreKeeperDao.getScoreKeeperGame(session);
+    public SpeechletResponse getSchlechteNachtIntentResponse(Session session) {
 
-    
+        String speechText =
+                "Das ist ja echt doof.";
 
+        
+        
+        return getTellSpeechletResponse(speechText);
+        
+    }
+
+    public SpeechletResponse getGuteNachtIntentResponse(Session session) {
+        
         String speechText =
                 "Das ist ja echt doof.";
 
