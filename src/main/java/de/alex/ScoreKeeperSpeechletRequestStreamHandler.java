@@ -34,6 +34,6 @@ public final class ScoreKeeperSpeechletRequestStreamHandler extends SpeechletReq
     }
 
     public ScoreKeeperSpeechletRequestStreamHandler() {
-        super(new ScoreKeeperSpeechlet(), supportedApplicationIds);
+        super(new AnnaSpeechlet(), supportedApplicationIds);
     }
 }

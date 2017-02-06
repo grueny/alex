@@ -19,7 +19,7 @@ public class AlexConfig {
         SpeechletServlet speechletServlet = new SpeechletServlet();
         speechletServlet.setSpeechlet(scoreKeeperSpeechlet);
 
-        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(speechletServlet, "/alexa");
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(speechletServlet, "/anna");
         return servletRegistrationBean;     
     }
 }
