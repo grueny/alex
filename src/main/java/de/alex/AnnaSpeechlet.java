@@ -93,6 +93,7 @@ public class AnnaSpeechlet implements Speechlet {
             throws SpeechletException {
         log.info("onLaunch requestId={}, sessionId={}", request.getRequestId(),
                 session.getSessionId());
+                System.out.println("onLaunch");
 
        // skillContext.setNeedsMoreHelp(true);
         return scoreKeeperManager.getLaunchResponse(request, session);
@@ -101,6 +102,7 @@ public class AnnaSpeechlet implements Speechlet {
     @Override
     public SpeechletResponse onIntent(IntentRequest request, Session session)
             throws SpeechletException {
+                System.out.println("onIntent");
         log.info("onIntent requestId={}, sessionId={}", request.getRequestId(),
                 session.getSessionId());
         
