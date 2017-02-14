@@ -95,7 +95,7 @@ public class AnnaManager {
     public SpeechletResponse getGuteNachtIntentResponse(Session session) {
 
         String speechText =
-                "Das ist ja echt doof.";
+                "Das freut mich! Musst du heute arbeiten?";
 
         
         
