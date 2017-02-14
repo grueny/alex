@@ -69,17 +69,12 @@ public class AnnaManager {
      */
     public SpeechletResponse getSchlechteNachtIntentResponse(Session session) {
 
-        String speechText =
-                "Das ist ja echt doof. Musst du heute arbeiten?";
-
-        return getTellSpeechletResponse(speechText);
+        return getAskSpeechletResponse("Das ist ja echt doof."," Musst du heute arbeiten?");
         
     }
 
     public SpeechletResponse getGuteNachtIntentResponse(Session session) {
-        String speechText =
-                "Das freut mich! Musst du heute arbeiten?";
-        return getTellSpeechletResponse(speechText);
+        return getAskSpeechletResponse("Das freut mich!","Musst du heute arbeiten?");
     }
 
     public SpeechletResponse getArbeitenResponse(Session session) {
