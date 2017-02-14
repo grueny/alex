@@ -70,7 +70,7 @@ public class AnnaManager {
     public SpeechletResponse getSchlechteNachtIntentResponse(Session session) {
 
         String speechText =
-                "Das ist ja echt doof.";
+                "Das ist ja echt doof. Musst du heute arbeiten?";
 
         return getTellSpeechletResponse(speechText);
         
