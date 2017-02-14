@@ -1,7 +1,13 @@
-SchlechteNachtIntent nein leider nicht
+SchlechteNachtIntent leider nicht gut
+SchlechteNachtIntent schlecht
 SchlechteNachtIntent nein die nacht war nicht so gut
 GuteNachtIntent ja danke
+GuteNachtIntent gut danke
+GuteNachtIntent es geht
+GuteNachtIntent sehr fest
 ArbeitenIntent ja ich musste arbeiten
+ArbeitenIntent ja 
+ArbeitenIntent ja muss ich
 NichtarbeitenIntent nein ich musste heute nicht arbeiten
-NichtarbeitenIntent ich hatte heute frei
-LaunchIntent Was willst du wissen Alexa
+NichtarbeitenIntent ich habe heute frei
+NichtarbeitenIntent nein

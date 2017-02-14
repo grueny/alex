@@ -53,7 +53,7 @@ public class AnnaManager {
   
         speechText = "Guten morgen Anna, wie hast du geschalfen?";
         repromptText = "Wie hast du geschlafen?";
-       
+       session.setAttribute("const", "Trullala");
 
         return getAskSpeechletResponse(speechText, repromptText);
     }
@@ -78,6 +78,11 @@ public class AnnaManager {
     }
 
     public SpeechletResponse getArbeitenResponse(Session session) {
+        Object antwort = session.getAttribute("const");
+        if (antwort != null && antwort instanceof String){
+             return getTellSpeechletResponse("Ich hoffe du hast viele viele viele nette Kunden!");
+        }
+
         return getTellSpeechletResponse("Ich hoffe du hast viele nette Kunden!");
     }
 
