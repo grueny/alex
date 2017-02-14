@@ -28,26 +28,12 @@ import com.amazon.speech.ui.SimpleCard;
 
 
 /**
- * The {@link ScoreKeeperManager} receives various events and intents and manages the flow of the
+ * The {@link annaManager} receives various events and intents and manages the flow of the
  * game.
  */
 @Component
 public class AnnaManager {
-    /**
-     * Intent slot for player name.
-     */
-    private static final String SLOT_PLAYER_NAME = "PlayerName";
-
-    /**
-     * Intent slot for player score.
-     */
-    private static final String SLOT_SCORE_NUMBER = "ScoreNumber";
-
-    /**
-     * Maximum number of players for which scores must be announced while adding a score.
-     */
-    private static final int MAX_PLAYERS_FOR_SPEECH = 3;
-
+ 
 
     /**
      * Creates and returns response for Launch request.
@@ -60,7 +46,7 @@ public class AnnaManager {
      */
     public SpeechletResponse getLaunchResponse(LaunchRequest request, Session session) {
         // Speak welcome message and ask user questions
-        // based on whether there are players or not.
+        
         String speechText, repromptText;
         
 
@@ -86,21 +72,22 @@ public class AnnaManager {
         String speechText =
                 "Das ist ja echt doof.";
 
-        
-        
         return getTellSpeechletResponse(speechText);
         
     }
 
     public SpeechletResponse getGuteNachtIntentResponse(Session session) {
-
         String speechText =
                 "Das freut mich! Musst du heute arbeiten?";
-
-        
-        
         return getTellSpeechletResponse(speechText);
-        
+    }
+
+    public SpeechletResponse getArbeitenResponse(Session session) {
+        return getTellSpeechletResponse("Ich hoffe du hast viele nette Kunden!");
+    }
+
+    public SpeechletResponse getNichtArbeitenResponse(Session session) {
+        return getTellSpeechletResponse("Schön, dann kannst du entspannen!");
     }
 
     /**
@@ -273,12 +260,8 @@ public class AnnaManager {
      *            {@link SkillContext} for this request
      * @return response for the help intent
      */
-    public SpeechletResponse getHelpIntentResponse(Intent intent, Session session,
-            SkillContext skillContext) {
-        return skillContext.needsMoreHelp() ? getAskSpeechletResponse(
-                ScoreKeeperTextUtil.COMPLETE_HELP + " So, how can I help?",
-                ScoreKeeperTextUtil.NEXT_HELP)
-                : getTellSpeechletResponse(ScoreKeeperTextUtil.COMPLETE_HELP);
+    public SpeechletResponse getHelpIntentResponse(Intent intent, Session session) {
+        return  getAskSpeechletResponse("Du kannst einfach mit mir quatschen, Sage einfach: Was willst du wissen Alexa?","Du kannst einfach mit mir quatschen, Sage einfach: Was willst du wissen Alexa?");
     }
 
     /**
@@ -292,11 +275,8 @@ public class AnnaManager {
      *            {@link SkillContext} for this request
      * @return response for the exit intent
      */
-    public SpeechletResponse getExitIntentResponse(Intent intent, Session session,
-            SkillContext skillContext) {
-        return skillContext.needsMoreHelp() ? getTellSpeechletResponse("Okay. Whenever you're "
-                + "ready, you can start giving points to the players in your game.")
-                : getTellSpeechletResponse("");
+    public SpeechletResponse getExitIntentResponse(Intent intent, Session session) {
+        return getTellSpeechletResponse("Bis dann");
     }
 
     /**
@@ -347,60 +327,4 @@ public class AnnaManager {
         return SpeechletResponse.newTellResponse(speech, card);
     }
 
-    /**
-     * Converts a {@link Map} of scores into text for speech. The order of the entries in the text
-     * is determined by the order of entries in {@link Map#entrySet()}.
-     *
-     * @param scores
-     *            A {@link Map} of scores
-     * @return a speech ready text containing scores
-     */
-    private String getAllScoresAsSpeechText(Map<String, Long> scores) {
-        StringBuilder speechText = new StringBuilder();
-        int index = 0;
-        for (Entry<String, Long> entry : scores.entrySet()) {
-            if (scores.size() > 1 && index == scores.size() - 1) {
-                speechText.append(" and ");
-            }
-            String singularOrPluralPoints = entry.getValue() == 1 ? " point, " : " points, ";
-            speechText
-                    .append(entry.getKey())
-                    .append(" has ")
-                    .append(entry.getValue())
-                    .append(singularOrPluralPoints);
-            index++;
-        }
-
-        return speechText.toString();
-    }
-
-    /**
-     * Creates and returns a {@link Card} with a formatted text containing all scores in the game.
-     * The order of the entries in the text is determined by the order of entries in
-     * {@link Map#entrySet()}.
-     *
-     * @param scores
-     *            A {@link Map} of scores
-     * @return leaderboard text containing all scores in the game
-     */
-    private Card getLeaderboardScoreCard(Map<String, Long> scores) {
-        StringBuilder leaderboard = new StringBuilder();
-        int index = 0;
-        for (Entry<String, Long> entry : scores.entrySet()) {
-            index++;
-            leaderboard
-                    .append("No. ")
-                    .append(index)
-                    .append(" - ")
-                    .append(entry.getKey())
-                    .append(" : ")
-                    .append(entry.getValue())
-                    .append("\n");
-        }
-
-        SimpleCard card = new SimpleCard();
-        card.setTitle("Leaderboard");
-        card.setContent(leaderboard.toString());
-        return card;
-    }
 }

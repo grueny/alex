@@ -75,7 +75,7 @@ public class AnnaSpeechlet implements Speechlet {
 //    private AmazonDynamoDBClient amazonDynamoDBClient;
 
     @Autowired
-    private AnnaManager scoreKeeperManager;
+    private AnnaManager annaManager;
 
     @Override
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
@@ -94,9 +94,9 @@ public class AnnaSpeechlet implements Speechlet {
         log.info("onLaunch requestId={}, sessionId={}", request.getRequestId(),
                 session.getSessionId());
                 System.out.println("onLaunch");
-
-       // skillContext.setNeedsMoreHelp(true);
-        return scoreKeeperManager.getLaunchResponse(request, session);
+                
+       
+        return annaManager.getLaunchResponse(request, session);
     }
 
     @Override
@@ -108,29 +108,21 @@ public class AnnaSpeechlet implements Speechlet {
         
         Intent intent = request.getIntent();
         if ("SchlechteNachtIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getSchlechteNachtIntentResponse(session);
+            return annaManager.getSchlechteNachtIntentResponse(session);
 
         } 
         else if ("GuteNachtIntent".equals(intent.getName())) {
-            return scoreKeeperManager.getGuteNachtIntentResponse( session);
-
-        // } else if ("AddScoreIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getAddScoreIntentResponse(intent, session, skillContext);
-
-        // } else if ("TellScoresIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getTellScoresIntentResponse(intent, session);
-
-        // } else if ("ResetPlayersIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getResetPlayersIntentResponse(intent, session);
-
-        // } else if ("AMAZON.HelpIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getHelpIntentResponse(intent, session, skillContext);
-
-        // } else if ("AMAZON.CancelIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
-
-        // } else if ("AMAZON.StopIntent".equals(intent.getName())) {
-        //     return scoreKeeperManager.getExitIntentResponse(intent, session, skillContext);
+            return annaManager.getGuteNachtIntentResponse( session);
+        } else if ("ArbeitenIntent".equals(intent.getName())) {
+            return annaManager.getGuteNachtIntentResponse( session);
+        } else if ("NichtArbeitenIntent".equals(intent.getName())) {
+            return annaManager.getGuteNachtIntentResponse( session);       
+         } else if ("AMAZON.HelpIntent".equals(intent.getName())) {
+             return annaManager.getHelpIntentResponse(intent, session);
+         } else if ("AMAZON.CancelIntent".equals(intent.getName())) {
+             return annaManager.getExitIntentResponse(intent, session);
+         } else if ("AMAZON.StopIntent".equals(intent.getName())) {
+             return annaManager.getExitIntentResponse(intent, session);
 
         } else {
             throw new IllegalArgumentException("Unrecognized intent: " + intent.getName());

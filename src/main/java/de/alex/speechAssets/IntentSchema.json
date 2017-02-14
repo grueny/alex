@@ -5,6 +5,21 @@
     },
     {
       "intent": "GuteNachtIntent"
+    },
+    {
+      "intent":"ArbeitenIntent"
+    },
+    {
+      "intent":"NichtarbeitenIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
     }
   ]
 }
