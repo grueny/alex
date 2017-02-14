@@ -51,7 +51,7 @@ public class AnnaManager {
         
 
   
-        speechText = "Guten morgen Anna, wie hast du geschalfen?";
+        speechText = "Guten morgen Anna, wie hast du geschlafen?";
         repromptText = "Wie hast du geschlafen?";
        session.setAttribute("const", "Trullala");
 
