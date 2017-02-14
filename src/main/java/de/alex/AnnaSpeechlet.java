@@ -115,7 +115,7 @@ public class AnnaSpeechlet implements Speechlet {
             return annaManager.getGuteNachtIntentResponse( session);
         } else if ("ArbeitenIntent".equals(intent.getName())) {
             return annaManager.getArbeitenResponse( session);
-        } else if ("NichtArbeitenIntent".equals(intent.getName())) {
+        } else if ("NichtarbeitenIntent".equals(intent.getName())) {
             return annaManager.getNichtArbeitenResponse( session);       
          } else if ("AMAZON.HelpIntent".equals(intent.getName())) {
              return annaManager.getHelpIntentResponse(intent, session);
